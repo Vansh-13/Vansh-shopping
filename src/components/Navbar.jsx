@@ -21,30 +21,34 @@ export function Navbar() {
 
     return (
         <>
-            <nav className="navbar sticky-top bg-white shadow-sm mb-3">
-                <Container className="d-flex justify-content-between align-items-center">
-                    <NavLink to="/" className="navbar-brand d-flex align-items-center gap-2">
-                        <img src="/imgs/logo.svg" alt="Logo" width="30" height="30" />
-                        <span className="fw-bold">TWS DevOps Junoon</span>
+            <nav className="navbar sticky-top bg-dark shadow-lg mb-3">
+                <Container className="d-flex justify-content-between align-items-center py-3">
+                    <NavLink to="/" className="navbar-brand d-flex align-items-center gap-2 text-white">
+                        <img src="/imgs/logo.svg" alt="Logo" width="35" height="35" />
+                        <span className="fw-bold fs-4">TWS DevOps Junoon</span>
                     </NavLink>
 
-                    <div className="d-flex align-items-center gap-3">
-                        <Nav>
-                            <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active fw-bold' : ''}`}>Store</NavLink>
-                            <NavLink to="/admin" className={({ isActive }) => `nav-link ${isActive ? 'active fw-bold' : ''}`}>Admin</NavLink>
+                    <div className="d-flex align-items-center gap-4">
+                        <Nav className="gap-4">
+                            <NavLink to="/" className={({ isActive }) => `nav-link text-white ${isActive ? 'fw-bold' : ''}`}>
+                                Store
+                            </NavLink>
+                            <NavLink to="/admin" className={({ isActive }) => `nav-link text-white ${isActive ? 'fw-bold' : ''}`}>
+                                Admin
+                            </NavLink>
                         </Nav>
 
-                        <a href="https://github.com/LondheShubham153/online_shop_hackathon" target="_blank" rel="noopener noreferrer" className="btn btn-outline-dark btn-sm rounded-circle">
+                        <a href="https://github.com/Vansh-13" target="_blank" rel="noopener noreferrer" className="btn btn-outline-light btn-sm rounded-circle hover-scale">
                             <FontAwesomeIcon icon={faGithub} />
                         </a>
-                        <a href="https://www.trainwithshubham.com/s/pages/junoonbatch9" target="_blank" rel="noopener noreferrer" className="btn btn-outline-dark btn-sm rounded-circle">
+                        <a href="https://www.linkedin.com/in/vansh-madaan-504a3424a/" target="_blank" rel="noopener noreferrer" className="btn btn-outline-light btn-sm rounded-circle hover-scale">
                             <FontAwesomeIcon icon={faUser} />
                         </a>
 
                         <ThemeToggle />
 
                         {/* Cart Button */}
-                        <Button variant="outline-primary" className="position-relative" onClick={handleCartToggle}>
+                        <Button variant="outline-light" className="position-relative hover-scale" onClick={handleCartToggle}>
                             <FontAwesomeIcon icon={faShoppingCart} />
                             {cartQuantity > 0 && (
                                 <Badge bg="danger" pill className="position-absolute top-0 start-100 translate-middle">
@@ -57,17 +61,17 @@ export function Navbar() {
             </nav>
 
             {/* 🧾 Cart Side Drawer */}
-            <Offcanvas show={showCart} onHide={handleClose} placement="end">
-                <Offcanvas.Header closeButton>
+            <Offcanvas show={showCart} onHide={handleClose} placement="end" className="cart-offcanvas">
+                <Offcanvas.Header closeButton className="bg-dark text-white">
                     <Offcanvas.Title>Your Cart</Offcanvas.Title>
                 </Offcanvas.Header>
-                <Offcanvas.Body>
+                <Offcanvas.Body className="bg-light p-4">
                     {cartItems.length === 0 ? (
-                        <p className="text-muted">Your cart is empty.</p>
+                        <p className="text-muted text-center">Your cart is empty.</p>
                     ) : (
                         <ListGroup variant="flush">
                             {cartItems.map((item) => (
-                                <ListGroup.Item key={item.id} className="d-flex justify-content-between align-items-center">
+                                <ListGroup.Item key={item.id} className="d-flex justify-content-between align-items-center border-0 shadow-sm mb-2">
                                     <div>
                                         <div className="fw-bold">{item.name || `Product #${item.id}`}</div>
                                         <small className="text-muted">Quantity: {item.quantity}</small>
@@ -89,6 +93,50 @@ export function Navbar() {
                     )}
                 </Offcanvas.Body>
             </Offcanvas>
+
+            {/* CSS Enhancements */}
+            <style>
+                {`
+                    .navbar {
+                        background-color: #333 !important;
+                    }
+
+                    .navbar-brand {
+                        transition: all 0.3s ease;
+                    }
+
+                    .navbar-brand:hover {
+                        transform: scale(1.05);
+                    }
+
+                    .btn-outline-light {
+                        transition: all 0.3s ease;
+                    }
+
+                    .btn-outline-light:hover {
+                        background-color: #8a2be2;
+                        color: white;
+                        transform: scale(1.1);
+                    }
+
+                    .hover-scale:hover {
+                        transform: scale(1.1);
+                    }
+
+                    .cart-offcanvas .offcanvas-body {
+                        padding-top: 2rem;
+                    }
+
+                    .cart-offcanvas .offcanvas-title {
+                        font-size: 1.25rem;
+                        font-weight: bold;
+                    }
+
+                    .cart-offcanvas .btn-outline-danger:hover {
+                        background-color: #e25555;
+                    }
+                `}
+            </style>
         </>
     );
 }

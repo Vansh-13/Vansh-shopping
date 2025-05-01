@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { Navbar } from "./components/Navbar";
+
 import Store from "./pages/Store";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import { ShoppingItemsProvider } from "./context/ShoppingItemsContext";
@@ -10,6 +11,7 @@ import Admin from "./pages/Admin";
 import Checkout from "./pages/Checkout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Payment from "./pages/Payment";
 
 export default function App() {
     return (
@@ -23,6 +25,7 @@ export default function App() {
                                 <Route path="/" element={<Store />} />
                                 <Route path="/admin" element={<Admin />} />
                                 <Route path="/checkout" element={<Checkout />} />
+                                <Route path="/payment" element={<Payment/>}/>
                             </Routes>
                         </Container>
                         <Footer />

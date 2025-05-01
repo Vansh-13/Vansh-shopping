@@ -1,8 +1,10 @@
-﻿import { Container, Row, Col, Button } from "react-bootstrap";
+﻿import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { StoreItem } from "../components/StoreItem";
 import { useShoppingItems } from "../context/ShoppingItemsContext";
 import { SearchBar } from "../components/SearchBar";
 import { useState, useMemo } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function Store() {
     const { products, isLoadingProducts } = useShoppingItems();
@@ -68,11 +70,18 @@ export default function Store() {
     }
 
     return (
-        <Container>
-            <SearchBar 
-                onSearch={setSearchQuery} 
-                onFilter={setActiveFilters}
-            />
+        <Container className="my-5">
+            <div className="d-flex justify-content-between align-items-center mb-4">
+                <SearchBar 
+                    onSearch={setSearchQuery} 
+                    onFilter={setActiveFilters}
+                    placeholder="Search for products..."
+                />
+                <Button variant="outline-secondary" className="filter-btn">
+                    <FontAwesomeIcon icon={faSearch} /> Filters
+                </Button>
+            </div>
+
             <Row xs={1} sm={2} lg={3} xl={4} className="g-4">
                 {displayedProducts.map(product => (
                     <Col key={product.id}>
@@ -80,28 +89,29 @@ export default function Store() {
                     </Col>
                 ))}
             </Row>
-            
-            <div className="load-more-section">
+
+            <div className="load-more-section mt-4 text-center">
                 {filteredProducts.length === 0 && (searchQuery || activeFilters) ? (
-                    <div className="text-center">
-                        <h3>No products found</h3>
-                        <p>Try adjusting your search criteria or filters</p>
+                    <div>
+                        <h4>No products found</h4>
+                        <p>Try adjusting your search criteria or filters.</p>
                     </div>
                 ) : filteredProducts.length > visibleProducts ? (
                     <>
                         <Button 
                             onClick={loadMore}
-                            className="load-more-btn"
+                            variant="primary" 
+                            className="mt-3 px-4 py-2"
                         >
                             Load More Products
                         </Button>
-                        <div className="products-shown-text">
+                        <div className="mt-2 text-muted">
                             Showing {displayedProducts.length} of {filteredProducts.length} products
                         </div>
                     </>
                 ) : (
-                    <div className="products-shown-text">
-                        All {filteredProducts.length} products are displayed
+                    <div className="mt-2 text-muted">
+                        All {filteredProducts.length} products are displayed.
                     </div>
                 )}
             </div>

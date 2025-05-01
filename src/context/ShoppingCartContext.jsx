@@ -17,6 +17,12 @@ export function ShoppingCartProvider({ children }) {
         0
     );
 
+    // Calculate totalAmount based on cart items and their prices
+    const totalAmount = cartItems.reduce(
+        (total, item) => total + (getItem(item.id)?.price * item.quantity),
+        0
+    );
+
     const openCart = () => setIsOpen(true);
     const closeCart = () => setIsOpen(false);
 
@@ -83,6 +89,7 @@ export function ShoppingCartProvider({ children }) {
                 closeCart,
                 cartItems,
                 cartQuantity,
+                totalAmount, // Provide the totalAmount here
                 isOpen,
             }}
         >
