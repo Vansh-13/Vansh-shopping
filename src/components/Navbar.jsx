@@ -23,17 +23,17 @@ export function Navbar() {
         <>
             <nav className="navbar sticky-top bg-dark shadow-lg mb-3">
                 <Container className="d-flex justify-content-between align-items-center py-3">
-                    <NavLink to="/" className="navbar-brand d-flex align-items-center gap-2 text-white">
+                    <NavLink to="/" className="navbar-brand d-flex align-items-center gap-2 text-red">
                         <img src="/imgs/logo.svg" alt="Logo" width="35" height="35" />
                         <span className="fw-bold fs-4">TWS DevOps Junoon</span>
                     </NavLink>
 
                     <div className="d-flex align-items-center gap-4">
                         <Nav className="gap-4">
-                            <NavLink to="/" className={({ isActive }) => `nav-link text-white ${isActive ? 'fw-bold' : ''}`}>
+                            <NavLink to="/" className={({ isActive }) => `nav-link text-red ${isActive ? 'fw-bold' : ''}`}>
                                 Store
                             </NavLink>
-                            <NavLink to="/admin" className={({ isActive }) => `nav-link text-white ${isActive ? 'fw-bold' : ''}`}>
+                            <NavLink to="/admin" className={({ isActive }) => `nav-link text-blue ${isActive ? 'fw-bold' : ''}`}>
                                 Admin
                             </NavLink>
                         </Nav>
